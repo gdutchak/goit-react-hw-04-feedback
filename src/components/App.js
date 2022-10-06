@@ -37,14 +37,15 @@ export function App() {
     }
     return 0
   };
-  const option = ['good', 'neutral', 'bad']
+  const option = Object.keys({ good, neutral, bad })
+
   return (
     <div style={{ padding: 40 }}>
       <Section title="Please leave feedback">
         <FeedbackOptions options={option} onLeaveFeedback={addFeedback}></FeedbackOptions>
       </Section>
       <Section title='Statistics'>
-        {countTotalFeedback() !== 0 ? <Statistics good={good} neutral={neutral} bad={bad} total={countTotalFeedback()} positivePercentage={countPositiveFeedbackPercentage()}></Statistics> : <Notification message='No feedback given'></Notification>}
+        {countTotalFeedback() !== 0 ? <Statistics good={good} neutral={neutral} bad={bad} total={countTotalFeedback()} positivePercentage={Number(countPositiveFeedbackPercentage())}></Statistics> : <Notification message='No feedback given'></Notification>}
       </Section>
     </div>
   )
